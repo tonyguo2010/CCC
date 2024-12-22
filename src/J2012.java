@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class J2012 {
@@ -69,7 +70,60 @@ public class J2012 {
 //		}
 //		return -1;
 	}
+	
+/*
+3
+FXAB
+ */
+	public static void j4BigBang2() {
+		Scanner sc = new Scanner(System.in);
+		int K = sc.nextInt();
+		sc.nextLine();
+//		String codeTable = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String input = sc.nextLine();
+		sc.close();
+		
+		for (int index = 0; index < input.length(); index++){
+			char S = input.charAt(index);
+			int shift = (index + 1) * 3 + K;
+//			System.out.println(shift);
+//			int posS = codeTable.indexOf(S) + 1;
+			int posS = (S - 'A') + 1;
+//			System.out.println(posS);
+			int posP = ((posS - shift - 1) + 26) % 26;
+//			System.out.println(posP);
+//			char P = codeTable.charAt(posP);
+			char P = (char) ('A' + posP);
+			System.out.print(P + "");
+		}
+	}
 
 
+/*
+3
+FXAB
+ */
+	
+	// S = 3P + K
+	public static void j4BigBang1() {
+		Scanner sc = new Scanner(System.in);
+		int K = sc.nextInt();
+		sc.nextLine();
+		String codeTable = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String input = sc.nextLine();
+		sc.close();
+		
+		for (int index = 0; index < input.length(); index++){
+			char S = input.charAt(index);
+			int shift = (index + 1) * 3 + K;
+//			System.out.println(shift);
+			int posS = codeTable.indexOf(S) + 1;
+//			System.out.println(posS);
+			int posP = ((posS - shift - 1) + 26) % 26;
+//			System.out.println(posP);
+			char P = codeTable.charAt(posP);
+			System.out.print(P + "");
+		}
+	}
 
 }
