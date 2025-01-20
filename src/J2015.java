@@ -9,11 +9,10 @@ public class J2015 {
 		
 		for (int index = 0; index < input.length(); index++){
 			char letter = input.charAt(index);
-			int state = getStateByLetter(letter);
 			
-			if (state == 0){ // if vowel, keep it
+			if ("aeiou".indexOf(letter) != -1){ // if vowel, keep it
 				System.out.print(letter);
-			} else if (state == 1) { // consonant
+			} else { // consonant
 				System.out.print(letter);
 				System.out.print(closestVowel(letter));
 				System.out.print(nextConsonant(letter));
@@ -40,19 +39,17 @@ public class J2015 {
 		char result = ' ';
 		int record = 27; // totally only 26 letters 
 		for (int index = 0; index < "aeiou".length(); index++){
-			if (Math.abs(letter - "aeiou".charAt(index)) < record ){
-				record = Math.abs(letter - "aeiou".charAt(index));
-				result = "aeiou".charAt(index);
+			
+			char currentVowel = "aeiou".charAt(index);
+			
+			int currentDistance = Math.abs(letter - currentVowel);
+			
+			if (currentDistance < record ){
+				record = currentDistance;
+				result = currentVowel;
 			}
 		}
 		return result;
-	}
-
-	private static int getStateByLetter(char letter) {
-		if ("aeiou".indexOf(letter) != -1){
-			return 0;
-		}
-		return 1;
 	}
 
 }
