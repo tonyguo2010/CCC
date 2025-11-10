@@ -1,5 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
+class Cell{
+	public int row;
+	public int col;
+	public int val;
+}
 public class J2025 {
 
 	public static void J3ProductCodes() {
@@ -116,6 +122,92 @@ public class J2025 {
 				count ++;
 		}
 		return (count <= 1);
+	}
+
+	public static void J5ConnectingTerritories() {
+		Scanner sc = new Scanner(System.in);
+//		int rows = sc.nextInt();
+//		int cols = sc.nextInt();
+//		int cycle = sc.nextInt();
+		int rows = 3;
+		int cols = 5;
+		int cycle = 7;
+		sc.close();
+		
+		int[][] map = new int[rows][cols];
+		int value = 0;
+		for (int row = 0; row < rows; row++){
+			for (int col = 0; col < cols; col++){
+				value = value % cycle + 1;
+				map[row][col] = value;
+			}
+		}
+		
+//		print(map, rows, cols);
+		
+		for (int i = 0; i < cols; i++){
+			Cell root = new Cell();
+			root.row = 0;
+			root.col = i;
+			root.val = map[0][i];
+			recur(root, map, rows, cols, root.val);
+		}
+		
+		System.out.println(record);
+	}
+
+	static int record = Integer.MAX_VALUE;
+	private static void recur(Cell root, int[][] map, int rows, int cols, int amount) {
+//		System.out.println(String.format("%d %d %d", root.row, root.col, root.val));
+		if (root.row == rows -1){
+//			System.out.println(amount);
+			record = Math.min(record, amount);	
+			return;
+		}
+		for (int i = root.col - 1; i <= root.col + 1; i++){
+			try{
+				Cell node = new Cell();
+				node.row = root.row + 1;
+				node.col = i;
+				node.val = map[node.row][node.col];
+				recur(node, map, rows, cols, amount + node.val);
+//				return all;
+			}
+			catch(Exception e){
+			}
+		}
+	}
+
+	private static void print(int[][] map, int rows, int cols) {
+		for (int row = 0; row < rows; row++){
+			for (int col = 0; col < cols; col++){
+				System.out.print(" " + map[row][col]);
+			}
+			System.out.println();
+		}
+	}
+
+	public static void J2DonutShop() {
+		Scanner sc = new Scanner(System.in);
+		// get base number
+		int base = sc.nextInt();
+		// how many rounds to repeat/calculate
+		int round = sc.nextInt();
+		// check every operator
+		for (int i = 0; i < round; i++){
+			// use the operator to calculate
+			String oper = sc.next();
+			int number = sc.nextInt();
+			if (oper.equals("+")){
+				base = base + number;
+			}
+			if (oper.equals("-")){
+				base = base - number;
+			}
+		}
+		// output the result
+		System.out.println(base);
+		sc.close();
 	}
 
 }

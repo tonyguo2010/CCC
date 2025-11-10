@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class J2024 {
@@ -69,6 +70,45 @@ public class J2024 {
 
 		System.out.println("" + silly + " " + wrong);
 		System.out.println("" + quiet);
+	}
+	/*
+4
+70
+62
+58
+73 
+*/
+	public static void q4BronzeCount() {
+		Scanner sc = new Scanner(System.in);
+		int count = sc.nextInt();	// 4
+		int[] scores = new int[count];
+		for (int i = 0; i < count; i++){
+			scores[i] = sc.nextInt();  // 70 62 58 73 
+		}
+		sc.close();
+		
+		Arrays.sort(scores); // 58 62 70 73 
+		
+		int record = scores[scores.length - 1];  // record = scores[3] = 73
+		int life = 2;
+		for (int i = scores.length - 1; i >= 0; i--){  // i = 3, 2, 1, 0
+			if (scores[i] < record){  // scores[3] vs record? (73==73)  // scores[2] vs record? (70 < 73)  // scores[1] vs record? (62 < 70)
+				life --; // 1 // 0
+				record = scores[i];  // record = 70  // record = 62
+			}
+			if (life == 0){
+				break;
+			}
+		}
+		
+		int copper = 0;
+		for (int i = 0; i < count; i++){
+			if (scores[i] == record){  // record = 62
+				copper ++;
+			}
+		}
+		
+		System.out.println(record + " " + copper);
 	}
 
 }
