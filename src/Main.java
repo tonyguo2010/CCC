@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 class msg
@@ -11,17 +12,41 @@ public class Main {
 	static ArrayList<char[][]> results = new ArrayList<char[][]>();
 	
 	public static void main(String[] args) {		
-		J2024.q4BronzeCount();
+		J2014.q4PartyInvitation();
 	}
 
+	/*
+1 3
+3 2
+5 1
+2 3
+	 */
 	private static void test() {
-		char[][] board = new char[3][3];
-		for (int row = 0; row < 3; row++){
-			for (int col = 0; col < 3; col++){
-				board[row][col] = 'O';
+		Scanner sc = new Scanner(System.in);
+		int temp = sc.nextInt();
+		int count = sc.nextInt();
+		HashSet<Integer> ans = new HashSet<>();
+		
+		for (int i = 0; i < count; i++){
+			int hot = sc.nextInt();
+			int fresh = sc.nextInt();
+			int days = hot - temp;
+			if (days <= fresh){
+				while (true){
+					if (ans.contains(days) == false){
+						ans.add(days);
+						break;
+					}
+					days --;
+					if (days == 0){
+						break;
+					}
+				}
 			}
 		}
-		recur(board, 3);
+		sc.close();
+		
+		System.out.println(ans.size());
 	}
 
 	private static void print(char[][] board, int cnt) {
