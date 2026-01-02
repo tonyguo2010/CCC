@@ -12,7 +12,7 @@ public class Main {
 	static ArrayList<char[][]> results = new ArrayList<char[][]>();
 	
 	public static void main(String[] args) {		
-		J2014.q4PartyInvitation();
+		J2019.j3ColdCompress();
 	}
 
 	/*
