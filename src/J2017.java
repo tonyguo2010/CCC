@@ -44,7 +44,6 @@ public class J2017 {
 	}
 
 	private static boolean checkDiff(int fakeTime) {
-		int temp = fakeTime;
 		int diff = (fakeTime % 100) / 10 - (fakeTime % 100) % 10;
 		while (true){
 			if (fakeTime / 10 == 0)
