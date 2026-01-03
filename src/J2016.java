@@ -7,11 +7,20 @@ public class J2016 {
 		String word = sc.nextLine();
 		sc.close();
 		
+		int record = 0;
 		for (int start = 0; start < word.length(); start++){
-			for (int end = start; end < word.length(); end++){
-				System.out.println(word.substring(start, end + 1));
+			for (int end = start + 1; end < word.length() + 1; end++){
+				String subString = word.substring(start, end);
+				String rev = new StringBuilder(subString).reverse().toString();
+				if (subString.equals(rev)){
+//					System.out.println(subString);
+					if (record < subString.length())
+						record = subString.length();
+				}
 			}
 		}
+		
+		System.out.println(record);
 	}
 
 //	06:00 07:00 08:00 09:00 10:00 14:00 15:00 19:00 20:00 23:00
