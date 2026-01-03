@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 // https://www.cemc.uwaterloo.ca/contests/computing/past_ccc_contests/2010/stage1/juniorEn.pdf
 public class J2010 {
-
 	public static void q1WhatIsN() {
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
@@ -66,101 +66,35 @@ public class J2010 {
 			System.out.println("Tie");
 	}
 
+	static HashMap<String, Integer> vars = new HashMap<>();
+
 	public static void q3Punchy() {
 		Scanner sc = new Scanner(System.in);
-		int a = 0;
-		int b = 0;
-		while (true){
-			int status = sc.nextInt();
-			if (status == 7){
+		while(true){
+			String line = sc.nextLine();
+			String[] units = line.split(" ");
+			if (units[0].equals("7"))
 				break;
-			}
-			if (status == 1){
-				String var = sc.next();
-				int value = sc.nextInt();
-				if (var.equals("A")){
-					a = value;
-				} else {
-					b = value;
+			switch (units[0]){
+			case "1":
+				vars.put(units[1], Integer.valueOf(units[2]));
+				break;
+			case "2":
+				System.out.println(vars.get(units[1]));
+				break;
+			case "3":
+				vars.put(units[1], vars.get(units[1]) + vars.get(units[2]));
+				break;
+			case "4":
+				vars.put(units[1], vars.get(units[1]) * vars.get(units[2]));
+				break;
+			case "5":
+				vars.put(units[1], vars.get(units[1]) - vars.get(units[2]));
+				break;
+			case "6":
+				vars.put(units[1], vars.get(units[1]) / vars.get(units[2]));
+				break;
 				}
-			}
-			if (status == 2){
-				String var = sc.next();
-				if (var.equals("A")){
-					System.out.println(a);
-				}else{
-					System.out.println(b);
-				}
-			}
-			if (status == 3){
-				String var1 = sc.next();
-				String var2 = sc.next();
-				if (var1.equals("A")){
-					if (var2.equals("A")){
-						a += a;
-					}else{
-						a += b;
-					}
-				} else {
-					if (var2.equals("A")){
-						b += a;
-					}else{
-						b += b;
-					}
-				}
-			}
-			if (status == 4){
-				String var1 = sc.next();
-				String var2 = sc.next();
-				if (var1.equals("A")){
-					if (var2.equals("A")){
-						a *= a;
-					}else{
-						a *= b;
-					}
-				} else {
-					if (var2.equals("A")){
-						b *= a;
-					}else{
-						b *= b;
-					}
-				}
-			}
-			if (status == 5){
-				String var1 = sc.next();
-				String var2 = sc.next();
-				if (var1.equals("A")){
-					if (var2.equals("A")){
-						a -= a;
-					}else{
-						a -= b;
-					}
-				} else {
-					if (var2.equals("A")){
-						b -= a;
-					}else{
-						b -= b;
-					}
-				}
-			}
-			if (status == 6){
-				String var1 = sc.next();
-				String var2 = sc.next();
-				if (var1.equals("A")){
-					if (var2.equals("A")){
-						a /= a;
-					}else{
-						a /= b;
-					}
-				} else {
-					if (var2.equals("A")){
-						b /= a;
-					}else{
-						b /= b;
-					}
-				}
-			}
-			sc.nextLine();
 		}
 		sc.close();
 	}
